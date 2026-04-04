@@ -1,140 +1,99 @@
-# Enterprise RAG Demo | Bravado Solutions
+Enterprise RAG Demo | Bravado Solutions
+Building Scalable AI Systems for the Modern Enterprise
+Bravado Solutions is an enterprise software development company building scalable AI systems, SaaS platforms, and cloud-native applications.
 
-**Bravado Solutions**  
-Enterprise software development company building scalable AI systems, SaaS platforms, and cloud-native applications.
+This repository demonstrates an enterprise-ready Retrieval-Augmented Generation (RAG) architecture on Azure. It includes both C# and Python implementations for integrating proprietary data with GPT models via Azure OpenAI and Azure AI Search.
 
-This repository demonstrates an **enterprise-ready Retrieval-Augmented Generation (RAG) architecture** on Azure using **Azure OpenAI Service**, **Azure Cognitive Search**, and **Azure Storage**. It includes both **C#** and **Python** implementations for integrating proprietary or enterprise data with GPT models.
+🚀 Overview
+Most AI projects fail not because of models—but because of data fragmentation and weak architecture. This reference implementation focuses on:
 
----
+Grounding: Ensuring LLM responses are based strictly on enterprise data.
 
-## 🚀 Overview
+Scalability: Building RAG pipelines that handle production loads on Azure.
 
-Most AI projects fail not because of models — but because of **data fragmentation and weak architecture**.
+Hybrid Search: Integrating vector search with GPT models for high accuracy.
 
-This repository provides a **production-oriented reference implementation** for:
-
-- Grounding LLM responses using enterprise data
-- Building scalable RAG pipelines on Azure
-- Integrating vector search with GPT models
-- Structuring AI systems for real-world deployment
-
----
-
-## 🧠 Architecture
-
+🧠 Architecture
 The solution follows a standard enterprise RAG pipeline:
 
-1. **Data ingestion** → Upload documents to Azure Storage  
-2. **Indexing & vectorization** → Azure Cognitive Search + embeddings  
-3. **Retrieval** → Relevant context fetched via vector search  
-4. **Generation** → Azure OpenAI generates grounded responses  
+Data Ingestion: Uploading unstructured documents to Azure Storage.
 
----
+Indexing: Azure AI Search handles vectorization and chunking.
 
-## 📂 Repository Structure
+Retrieval: Context is fetched via vector/hybrid search based on user intent.
 
+Generation: Azure OpenAI generates grounded responses using the retrieved context.
 
+📂 Repository Structure
+Plaintext
 enterprise-rag-demo/
-│
-├─ README.md
-├─ .gitignore
-├─ LICENSE
-│
-├─ CSharp/
-│   ├─ ownData.cs
-│   └─ appsettings.json
-│
-├─ Python/
-│   ├─ ownData.py
-│   └─ python.env
-│
-└─ docs/
-    └─ instructions.md
-    
----
+├── CSharp/
+│   ├── ownData.cs
+│   └── appsettings.json
+├── Python/
+│   ├── ownData.py
+│   └── python.env
+├── docs/
+│   └── instructions.md
+├── .gitignore
+├── LICENSE
+└── README.md
+⚙️ Prerequisites
+Azure Subscription with access to:
 
-## ⚙️ Prerequisites
+Azure OpenAI Service (GPT-4o & Text-Embedding-3-Small)
 
-- Azure subscription with access to:
-  - Azure OpenAI Service
-  - Azure Cognitive Search
-  - Azure Storage Account
-- .NET 7 SDK (for C#)
-- Python 3.11+ (for Python)
-- Visual Studio Code or equivalent IDE
+Azure AI Search
 
----
+Azure Storage Account
 
-## 🔧 Setup
+Development Tools:
 
-### 1. Provision Azure Resources
+.NET 7 SDK
 
-Create the following:
+Python 3.11+
 
-- **Azure OpenAI Service**
-  - Deploy:
-    - GPT model (e.g., `gpt-4o`)
-    - Embedding model (e.g., `text-embedding-ada-002`)
+VS Code
 
-- **Azure Cognitive Search**
-  - Create an index for vector search
+🔧 Setup
+1. Provision Azure Resources
+Azure OpenAI: Deploy a chat model (e.g., gpt-4o) and an embedding model.
 
-- **Azure Storage Account**
-  - Upload your enterprise data (PDFs, documents, etc.)
+Azure AI Search: Create an index with vector support.
 
----
+Storage: Upload your PDFs or docs to a container named data.
 
-### 2. Configure Environment
+2. Configure Environment
+Python
 
-#### Python
-```bash
-# Copy example environment file
+Bash
 cp .env.example .env
-
-# Update .env with your Azure credentials
+# Update .env with your Azure Endpoints and Keys
 C#
-# Copy template to real config
-Copy-Item appsettings.json.template appsettings.json
 
-# Update with your Azure configuration
+PowerShell
+Copy-Item appsettings.json.template appsettings.json
+# Update appsettings.json with your Azure configuration
 3. Install Dependencies
 Python
+
+Bash
 pip install -r requirements.txt
 C#
+
+Bash
 dotnet add package Azure.AI.OpenAI
 dotnet add package Azure.Search.Documents
-4. Run the Application
-Python
-python ownData.py
-C#
-dotnet run
 🔐 Security Best Practices
-Never commit .env or real credentials
-Use .env.example for sharing configuration templates
-Rotate keys regularly in production environments
-📖 Use Cases
-Enterprise knowledge assistants
-Document intelligence systems
-Internal copilots for operations
-Customer support automation
-AI-powered search over proprietary data
-🏗️ Engineering Principles
+Secrets: Never commit .env or appsettings.json with real keys.
 
-This repository is built with:
+Identity: Use Managed Identities (RBAC) instead of API keys for production.
 
-Production readiness — not just prototypes
-Security-first design — no hardcoded secrets
-Scalability — cloud-native architecture
-Reusability — adaptable across industries
+Rotation: Regularly rotate Azure service keys.
+
 🤝 Work with Bravado Solutions
-
 We help enterprises move from AI experimentation to production-grade systems.
 
-🌐 Website: https://bravadosolutions.com
+🌐 Website: bravadosolutions.com
 
 📧 Contact: contact@bravadosolutions.com
-
-📚 Resources
-Azure OpenAI Documentation
-Azure Cognitive Search Documentation
-RAG Architecture Patterns
