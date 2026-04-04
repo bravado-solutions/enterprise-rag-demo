@@ -62,60 +62,55 @@ Required Azure resources:
 
 ### Text Embedding Model
 
-```bash
-az cognitiveservices account deployment create \
-  -g <resource_group> \
-  -n <OpenAI_resource> \
-  --deployment-name text-embedding-ada-002 \
-  --model-name text-embedding-ada-002 \
-  --model-version "2" \
-  --model-format OpenAI \
-  --sku-name "Standard" \
-  --sku-capacity 5
+Run the following in your terminal (replace placeholders):
 
-  GPT Model Deployment
-az cognitiveservices account deployment create \
-  -g <resource_group> \
-  -n <OpenAI_resource> \
-  --deployment-name gpt-4o \
-  --model-name gpt-4o \
-  --model-version "2024-05-13" \
-  --model-format OpenAI \
-  --sku-name "Standard" \
-  --sku-capacity 5
+`az cognitiveservices account deployment create -g <resource_group> -n <OpenAI_resource> --deployment-name text-embedding-ada-002 --model-name text-embedding-ada-002 --model-version "2" --model-format OpenAI --sku-name "Standard" --sku-capacity 5`
 
-  🗂️ Index Enterprise Data with Azure Cognitive Search
-Navigate to your Cognitive Search resource → Import and vectorize data
-Select Azure Blob Storage as the data source
-Configure:
-Subscription, Blob account, and container
-Leave blob folder blank
-Disable deletion tracking
-API Key authentication for Azure OpenAI service
-Enable semantic ranking and schedule a one-time indexer
-Name the index: enterprise-rag-index
+### GPT Model Deployment
 
-💻 Develop Your Application
-Clone this repository locally using Visual Studio Code
-Install required SDK packages:
+`az cognitiveservices account deployment create -g <resource_group> -n <OpenAI_resource> --deployment-name gpt-4o --model-name gpt-4o --model-version "2024-05-13" --model-format OpenAI --sku-name "Standard" --sku-capacity 5`
 
-C#
+---
 
-dotnet add package Azure.AI.OpenAI --version 2.1.0
-dotnet add package Azure.Search.Documents --version 11.6.0
+## 🗂️ Index Enterprise Data with Azure Cognitive Search
 
-Python
+1. Navigate to your Cognitive Search resource → Import and vectorize data.  
+2. Select **Azure Blob Storage** as the data source.  
+3. Configure:  
+   - Subscription, Blob account, and container  
+   - Leave blob folder blank  
+   - Disable deletion tracking  
+   - API Key authentication for Azure OpenAI service  
+   - Enable semantic ranking and schedule a one-time indexer  
+   - Name the index: `enterprise-rag-index`
 
-pip install openai==1.65.2
-pip install azure-search-documents==11.6.0
+---
+
+## 💻 Develop Your Application
+
+Clone this repository locally using Visual Studio Code.
+
+**Install SDK Packages:**
+
+- **C#**: `dotnet add package Azure.AI.OpenAI --version 2.1.0`  
+- **C#**: `dotnet add package Azure.Search.Documents --version 11.6.0`  
+- **Python**: `pip install openai==1.65.2`  
+- **Python**: `pip install azure-search-documents==11.6.0`  
+
 Update configuration files with your Azure endpoints, keys, and deployment names:
-Azure OpenAI endpoint & key
-GPT deployment: gpt-4o
-Azure Search endpoint & key
-Index name: enterprise-rag-index
 
-🧩 Use Azure OpenAI with Your Index
-C# Example
+- Azure OpenAI endpoint & key  
+- GPT deployment: `gpt-4o`  
+- Azure Search endpoint & key  
+- Index name: `enterprise-rag-index`  
+
+---
+
+## 🧩 Use Azure OpenAI with Your Index
+
+**C# Example:**
+
+```csharp
 ChatCompletionOptions chatCompletionsOptions = new ChatCompletionOptions()
 {
     MaxOutputTokenCount = 600,
@@ -128,8 +123,10 @@ chatCompletionsOptions.AddDataSource(new AzureSearchChatDataSource()
     IndexName = azureSearchIndex,
     Authentication = DataSourceAuthentication.FromApiKey(azureSearchKey),
 });
-Python Example
+```
+   ## 🧩 Python Example
 
+```python
 completion = client.chat.completions.create(
     model=deployment,
     messages=[{"role": "user", "content": input("Enter question: ")}],
@@ -147,16 +144,29 @@ completion = client.chat.completions.create(
     }
 )
 
-▶️ Run Your Application
-C#: dotnet run
-Python: python ownData.py
+```
+## ▶️ Run Your Application
 
-Test queries against your indexed enterprise data to generate context-aware AI responses.
+- **C#**: `dotnet run`  
+- **Python**: `python ownData.py`
 
-⚙️ Cleanup
+## 🔐 Security Best Practices
+
+- Never commit `.env` or `appsettings.json` with real keys  
+- Use Managed Identities (RBAC) instead of API keys for production  
+- Rotate Azure service keys regularly  
+
+## ⚙️ Cleanup
 
 After testing, delete Azure resources to avoid unnecessary costs:
 
-Azure OpenAI resource
-Azure Cognitive Search service
-Storage account and data containers
+- Azure OpenAI resource  
+- Azure Cognitive Search service  
+- Storage account and data containers  
+
+## 🤝 Work with Bravado Solutions
+
+We help enterprises move from AI experimentation to production-grade systems.
+
+🌐 Website: [bravadosolutions.com](https://bravadosolutions.com)  
+📧 Contact: contact@bravadosolutions.com
