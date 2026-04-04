@@ -1,0 +1,57 @@
+# ====================
+# macOS system files
+# ====================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ====================
+# Python
+# ====================
+__pycache__/
+*.py[cod]
+*.pyo
+*.env
+.env
+python.env
+*.egg-info/
+*.pytest_cache/
+.venv/
+venv/
+ENV/
+env/
+
+# ====================
+# C# / .NET
+# ====================
+bin/
+obj/
+*.user
+*.suo
+*.csproj.user
+*.sln.docstates
+*.vs/
+appsettings.json
+
+# ====================
+# Visual Studio Code
+# ====================
+.vscode/
+.history/
+*.code-workspace
+
+# ====================
+# Logs and temp files
+# ====================
+*.log
+*.tmp
+*.bak
+*.swp
+*.out
+
+# ====================
+# Node / npm (if needed)
+# ====================
+node_modules/
+package-lock.json
+yarn.lock
