@@ -25,40 +25,36 @@ The solution follows a standard enterprise RAG pipeline:
 4. **Generation:** Azure OpenAI generates grounded responses using the retrieved context.  
 
 ---
-
 ## 📂 Repository Structure
 
-enterprise-rag-demo/  
-├── CSharp/  
-│   ├── ownData.cs  
-│   └── appsettings.json  
-├── Python/  
-│   ├── ownData.py  
-│   └── python.env  
-├── docs/  
-│   └── instructions.md  
-├── .gitignore  
-├── LICENSE  
-└── README.md  
-
----
+```text
+enterprise-rag-demo/
+├── CSharp/
+│   ├── ownData.cs           # C# implementation for data ingestion
+│   └── appsettings.json     # Configuration for .NET environment
+├── Python/
+│   ├── ownData.py           # Python implementation for data ingestion
+│   └── python.env           # Environment variables template
+├── docs/
+│   └── instructions.md      # Detailed setup and usage guides
+├── .gitignore               # Excludes secrets and build artifacts
+├── LICENSE                  # Repository licensing information
+└── README.md                # Project overview and quick start
+```
 
 ## ⚙️ Prerequisites
 
-**Azure Subscription** with access to:
+**Azure Subscription** You will need an Azure subscription with access to the following resources:
+* **Azure OpenAI Service:** Required for **GPT-4o** (Chat) and **Text-Embedding-3-Small** (Embeddings).
+* **Azure AI Search:** To host the vector index and perform retrieval.
+* **Azure Storage Account:** For hosting source documents and training data.
 
-- **Azure OpenAI Service** (GPT-4o & Text-Embedding-3-Small)  
-- **Azure AI Search**  
-- **Azure Storage Account**  
-
-**Development Tools:**
-
-- .NET 7 SDK  
-- Python 3.11+  
-- VS Code (or equivalent IDE)  
+**Development Tools**
+* **.NET 7 SDK:** For running the C# implementation.
+* **Python 3.11+:** For running the Python implementation and scripts.
+* **VS Code:** (Or your preferred IDE) with the Azure and Python extensions installed.
 
 ---
-
 ## 🔧 Setup
 
 ### 1. Provision Azure Resources
